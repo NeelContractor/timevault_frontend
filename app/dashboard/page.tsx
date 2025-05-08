@@ -65,7 +65,7 @@ const Dashboard = () => {
             <p className="text-gray-300 ">
               Manage and access your time-locked content
             </p>
-            <p className="text-gray-500 text-xs">Displaying vaults can take few seconds. Please wait.</p>
+            <p className="text-gray-500 text-xs">Displaying vaults can take few a minutes or more. Please wait.</p>
           </div>
           
           <Button 
