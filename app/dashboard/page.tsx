@@ -62,9 +62,10 @@ const Dashboard = () => {
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-white mb-2">Your Time Vaults</h1>
-            <p className="text-gray-300">
+            <p className="text-gray-300 ">
               Manage and access your time-locked content
             </p>
+            <p className="text-gray-500 text-xs">Displaying vaults can take few seconds. Please wait.</p>
           </div>
           
           <Button 
