@@ -7,7 +7,7 @@ import Layout from "@/components/Layout";
 import { VaultData } from "@/components/VaultCard";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { useTimevaultProgram, useTimevaultProgramAccount } from "@/lib/vaultClient";
+import { useTimevaultProgramAccount, useTimevaultProgram } from "@/lib/vaultClient";
 import { PublicKey } from "@solana/web3.js";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -29,6 +29,8 @@ const Dashboard = () => {
   useEffect(() => {
     if (accounts.data) {
       accounts.refetch();
+      console.log(accounts);
+      console.log("re ping")
     }
   }, [accounts]);
 
@@ -97,7 +99,10 @@ const Dashboard = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-4">
-            {accounts.data?.filter((account: ProgramAccount<any>) => 
+            {accounts.data?.map((account) => (
+              <Card key={account.publicKey.toString()} account={account.publicKey} />
+            ))}
+            {/* {accounts.data?.filter((account: ProgramAccount<any>) => 
               account !== null && 
               account.account && 
               account.account.creator === publicKey?.toString()
@@ -106,7 +111,7 @@ const Dashboard = () => {
                 key={account.publicKey.toString()} 
                 account={account.publicKey} 
               />
-            ))}
+            ))} */}
           </div>
         )}
       </div>
@@ -124,6 +129,7 @@ function Card({ account }: { account: PublicKey }) {
   const isUnlockable = vaultData?.unlockTime ? now.gte(vaultData.unlockTime) : false;
   const [clicked, setClicked] = useState(false);
   const [loadedContent, setLoadedContent] = useState("");
+  console.log("vaultData: ",vaultData);
 
   function formatTime(seconds: BN): string {
     const secondsInHour = new BN(3600);

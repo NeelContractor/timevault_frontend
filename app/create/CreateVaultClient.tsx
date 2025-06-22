@@ -104,7 +104,8 @@ const CreateVaultClient = () => {
         unlock_time: unlockTimeUnix,
         title,
         content_uri: signedUrl,
-        content_type: contentType
+        content_type: contentType,
+        // userPubkey: publicKey
       });
       
       console.log("Time vault created:", res);
